@@ -1,0 +1,40 @@
+<%- include("partials/header") -%>
+
+<div class="srescontainer">
+    <h1 id="atitle">class <%=cls%>, <%=subarr[0]%></h1>
+    <div class="sresgrid">
+        <div class="sreshcontent">date</div>
+        <div class="sreshcontent">exam</div>
+        <div class="sreshcontent">view</div>
+
+        <% let runindx = 0; %>
+        <% tstnamearr.forEach(el=>{ %>
+            <div class="srescontent"><%=datearr[runindx]%></div>
+            <% if(['i', 'ii', 'iii', 'iv'].includes(el) ){ %>
+                <% const temptest = "Unit Test - "+el.toUpperCase(); %>
+                <div class="srescontent"><%=temptest%>, <%=subarr[runindx]%></div>
+            <% }else{ %>
+                <div class="srescontent"><%=el%>, <%=subarr[runindx]%></div>
+            <% } %>
+            
+            <div class="srescontent">
+                <form action="/clsrec" method="post">
+                    <input type="hidden" name="test" value="<%=tstarr[runindx]%>">
+                    <input type="hidden" name="testname" value="<%=tstnamearr[runindx]%>">
+                    <input type="hidden" name="subject" value="<%=subarr[runindx]%>">
+                    <input type="hidden" name="maxscore" value="<%=max[runindx]%>">
+                    <input type="hidden" name="class" value="<%=cls%>">
+                    <input type="hidden" name="year" value="<%=yr%>">
+                    <input type="submit" class="sressub" value="view">
+                </form>
+            </div>
+        <% runindx+=1; }); %>
+    </div>
+</div>
+
+
+
+
+
+<%- include("partials/footer") -%>
+

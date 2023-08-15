@@ -1,0 +1,47 @@
+.srescontainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sresgrid{
+    width: 95vw;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:5px;
+}
+
+.sreshcontent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: goldenrod;
+    color:white;
+    font-weight: bold;
+    border:1px solid black;
+    padding: 0.3rem;
+}
+
+
+.srescontent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255,255,0,0.3);
+    font-weight: bold;
+    border:1px solid black;
+    padding: 0.3rem;
+}
+
+.sressub{
+    font-size: 1.2rem;
+    border:none;
+    border-radius: 3px;
+    background-color:gold;
+    font-weight: bold;
+    color:brown;
+    padding:8px;
+}
+
+
