@@ -18,7 +18,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({mongoUrl: process.env.DATABASE_URI}),
-    cookie: {secure: false, maxAge:24*3600*1000}
+    cookie: {secure: true, maxAge:24*3600*1000}
 }));
 
 //routes
