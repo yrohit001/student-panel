@@ -1,0 +1,50 @@
+<%- include("partials/header") -%>
+
+<div class="form">
+    <form action="/clsrec" method="post">
+        <h1>fetch/feed result</h1>
+        <select name="test" id="test" required>
+            <option value="I">unit test - I</option>
+            <option value="II">unit test - II</option>
+            <option value="III">unit test - III</option>
+            <option value="IV">unit test - IV</option>
+            <option value="half yearly">half yearly</option>
+            <option value="annual">annual</option>
+            <option value="custom">custom</option>
+            <option value="sft">search for test</option>
+        </select>
+        <input type="text" name="testname" autocomplete="off" placeholder="test name">
+        <input type="text" name="subject" required autocomplete="off" placeholder="subject">
+        <input type="number" name="maxscore" required autocomplete="off" placeholder="maximum score">
+        <input type="number" name="class" required autocomplete="off" placeholder="class">
+        <input type="number" name="year" required autocomplete="off" placeholder="year">
+        <input type="submit" value="submit">
+    </form>
+</div>
+
+<script>
+    const d = new Date();
+    const yr = d.getFullYear();
+    document.querySelector("input[name=year]").setAttribute("value", yr);
+    document.querySelector("input[name=testname]").style.display = "none";
+    document.querySelector("select").addEventListener("click", evt=>{
+        if(evt.target.value === 'custom'){
+            document.querySelector("input[name=testname]").style.display = "block";
+            document.querySelector("input[name=testname]").setAttribute("required", "on");
+            document.querySelector("input[name=maxscore]").setAttribute("required", "on");
+            document.querySelector("input[name=maxscore]").style.display = "block";
+        }else{
+            document.querySelector("input[name=testname]").style.display = "none";
+            document.querySelector("input[name=testname]").removeAttribute("required");
+            if(evt.target.value === 'sft'){
+                document.querySelector("input[name=maxscore]").removeAttribute("required");
+                document.querySelector("input[name=maxscore]").style.display = "none";
+            }else{
+                document.querySelector("input[name=maxscore]").setAttribute("required", "on");
+                document.querySelector("input[name=maxscore]").style.display = "block";
+            }
+        }
+    })
+</script>
+
+<%- include("partials/footer") -%>

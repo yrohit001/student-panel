@@ -1,0 +1,32 @@
+<%- include("partials/header") -%>
+
+<div class="acontainer">
+    <h1 id="atitle">class, subject, testname</h1>
+    <form action="/postres" method="post">
+        <div class="agrid">
+            <div class="ahcontent">roll no.</div>
+            <div class="ahcontent">name</div>
+            <div class="ahcontent">marks</div>
+
+
+            <% let runindx = 0; %>
+            <% data[0].forEach(el=>{ %>
+                <div class="acontent"><%=el%></div>
+                <div class="acontent"><%=data[1][runindx]%></div>
+                <div class="acontent"><input type="number" name="sco" class="ascoinp" placeholder="marks" required></div>
+            <% runindx+=1; }); %>
+        </div>
+        <div class="asub">
+            <% let dbdata = date+"-"+month+"-"+year+"-"+cls+"-"+testname+"-"+subject+"-"+maxsco; %>
+            <input type="hidden" name="dbdata" value="<%=dbdata%>">
+            <input type="submit" value="submit">
+        </div>
+    </form>
+</div>
+
+
+
+
+
+<%- include("partials/footer") -%>
+

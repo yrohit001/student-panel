@@ -1,0 +1,58 @@
+<%- include("partials/header") -%>
+
+<div class="container">
+    <div class="radio">
+        <div class="subradio">
+            <div>
+                <input type="radio" id="roll" name="choice" value="0" checked>
+            </div>
+            
+            <label for="roll">search by roll no.</label>
+                
+        </div>
+        <div class="subradio">
+            <div>
+                <input type="radio" id="register" name="choice" value="1">
+            </div>
+            
+            <label for="register">search by registration no.</label>
+                
+        </div>
+    </div>
+</div>
+
+<div class="form" id="stufirst">
+    <form action="/sturec" method="post">
+        <input type="number" name="class" placeholder="class" autocomplete="off" required>
+        <input type="number" name="roll" placeholder="roll no." autocomplete="off" required>
+        <input type="number" name="year" placeholder="year" autocomplete="off" required>
+        <input type="submit" value="search">
+    </form>
+</div>
+
+<div class="form" id="stusec">
+    <form action="/sturec" method="post">
+        <input type="text" name="reg" placeholder="registration number" autocomplete="off" required>
+        <input type="submit" value="search">
+    </form>
+</div>
+
+
+<script>
+    document.getElementById("stusec").style.display = "none";
+    document.getElementsByName("choice").forEach(el=>{
+        el.addEventListener("click", (chevt)=>{
+            if(chevt.target.value==="1"){
+                document.getElementById("stusec").style.display = "flex";
+                document.getElementById("stufirst").style.display = "none";
+            }else if(chevt.target.value==="0"){
+                document.getElementById("stufirst").style.display = "flex";
+                document.getElementById("stusec").style.display = "none";
+            }
+        });
+    });
+</script>
+
+
+
+<%- include("partials/footer") -%>

@@ -1,0 +1,39 @@
+<% if(aug[0].length > 0){ %>
+    <script>
+    const augid = document.getElementById("aug");
+    augid.style.display = "flex";
+    const calDate = new Date("08-01-"+String(<%= year %>)).getDay();
+    for(let j = 0; j < parseInt(calDate); j++ ){
+        document.getElementById("augcalgrid").innerHTML += '<div></div>';
+    }
+    </script>
+    <% let runindex = 0; %>
+    <% for(let i = 1; i<= 31; i++){ %>
+        <% if(aug[0].includes(i)){ %>
+            <% if(aug[1][runindex] === 1){ %>
+                <script>
+                    document.getElementById("augcalgrid").innerHTML += '<div class="calnp"><%= aug[0][runindex] %></div>';
+                </script>
+            <% }else if(aug[1][runindex] === 0){ %>
+                <script>
+                    document.getElementById("augcalgrid").innerHTML += '<div class="calna"><%= aug[0][runindex] %></div>';
+                </script>
+            <% } %>
+
+        <% runindex += 1; }else{ %>
+           <script>
+            document.getElementById("augcalgrid").innerHTML += '<div class="caln">'+<%= i %>+'</div>';
+           </script> 
+        <% } %>
+
+    <% } %>
+
+    <% let totalpresent = 0; totaldays = 0; %> 
+    <% for(let kk = 0; kk < aug[1].length; kk++){ %>
+        <% totalpresent+=aug[1][kk]; %>
+        <% totaldays+=1; %>
+    <% } %>
+        <script>
+            document.getElementById("augf").innerHTML = "attendance: <%= totalpresent %>/<%= totaldays %>";
+        </script>
+<% } %>

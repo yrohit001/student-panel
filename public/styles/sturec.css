@@ -1,0 +1,10 @@
+.stusel{
+    font-size: 1.5rem;
+}
+
+.studiv{
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}

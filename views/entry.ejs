@@ -1,0 +1,91 @@
+<%- include("partials/header") -%>
+
+<div class="container">
+    <div class="radio">
+        <div class="subradio">
+            <div>
+                <input type="radio" id="attendence" name="choice" value="0" checked>
+            </div>
+            
+            <label for="attendence">attendance</label>
+                
+        </div>
+        <div class="subradio">
+            <div>
+                <input type="radio" id="register" name="choice" value="1">
+            </div>
+            
+            <label for="register">register</label>
+                
+        </div>
+    </div>
+</div>
+
+<div class="alert">
+    <span id="cross">❌</span>
+    student's record successfully added to the database.
+</div>
+
+<div class="form" id="regstd">
+    <form action="/entry" method="post">
+        <h1>register</h1>
+        <input type="text" name="stdname" required autocomplete="off" placeholder="student's fullname">
+        <input type="text" name="fatname" required autocomplete="off" placeholder="father's fullname">
+        <input type="text" name="motname" required autocomplete="off" placeholder="mother's fullname">
+        <input type="number" name="class" required autocomplete="off" placeholder="class">
+        <input type="number" name="roll" required autocomplete="off" placeholder="roll no.">
+        <input type="submit" value="submit">
+    </form>
+</div>
+
+<div class="form" id="filstd">
+    <form action="/attendence" method="post">
+        <h1>attendance</h1>
+        <input type="number" name="class" required autocomplete="off" placeholder="class">
+        <input type="number" id="sety" name="year" required autocomplete="off" placeholder="year">
+        <input type="submit" value="submit">
+    </form>
+</div>
+
+<div class="container bottom">
+    <div class="radio">
+        <div class="subradio"><div><a class="entdec" href="../sturec">student record</a></div></div>
+        <div class="subradio"><div><a class="entdec" href="../clsrec">class record</a></div></div>
+    </div>
+</div>
+
+<script>
+    const cross = document.getElementById("cross");
+    cross.addEventListener("click", (evt)=>{
+        evt.target.parentElement.style.display = "none";
+    });
+    document.getElementById("regstd").style.display = "none";
+    document.getElementsByName("choice").forEach(el=>{
+        el.addEventListener("click", (chevt)=>{
+            if(chevt.target.value==="1"){
+                document.getElementById("regstd").style.display = "flex";
+                document.getElementById("filstd").style.display = "none";
+            }else if(chevt.target.value==="0"){
+                document.getElementById("filstd").style.display = "flex";
+                document.getElementById("regstd").style.display = "none";
+            }
+        });
+    });
+    const mydate = new Date();
+    let year = mydate.getFullYear();
+    let month = mydate.getMonth();
+    month += 1;
+    if(month >= 1 && month <= 4){
+        year-=1;
+    }
+    document.getElementById("sety").setAttribute("value",year);
+    
+</script>
+
+<% if(msg !== "none"){ %>
+    <script>
+        document.querySelector(".alert").style.display = "block";
+    </script>
+    <% } %>
+
+<%- include("partials/footer") -%>

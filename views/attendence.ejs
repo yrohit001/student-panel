@@ -1,0 +1,40 @@
+<%- include("partials/header") -%>
+
+<div class="acontainer">
+    <h1 id="atitle">Class <%= cls %></h1>
+    <form action="/marked" method="post">
+        <div class="agrid">
+            <div class="ahcontent">roll no.</div>
+            <div class="ahcontent">name</div>
+            <div class="ahcontent">status</div>
+
+            <% let indx = 0; %>
+            <% record.forEach(el=>{ %>
+                <div class="acontent"><%= el[0] %></div>
+                <div class="acontent"><%= el[1] %></div>
+                <div class="acontent">
+                    <% if(attn[indx] === 1){ %>
+                        <input type="checkbox" name="<%= el[0] %>" checked>
+                    <% }else{ %>
+                        <input type="checkbox" name="<%= el[0] %>">
+                    <% } %>
+                </div>
+            <% indx+=1; }); %>
+
+        </div>
+        <input type="hidden" name="total" value="<%= total %>">
+        <input type="hidden" name="class" value="<%= cls %>">
+        <div class="asub">
+            <input type="submit" value="submit">
+        </div>
+    </form>
+</div>
+
+<script>
+    const mydate = new Date();
+    const date = mydate.getDate();
+    const month = mydate.toLocaleString('default',{month: 'long'});
+    document.getElementById("atitle").innerHTML += " ["+month+", "+date+"]";
+</script>
+
+<%- include("partials/footer") -%>
