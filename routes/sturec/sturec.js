@@ -18,7 +18,7 @@ router.post("/", (req, res)=>{
             Student.findOne({registration: req.body.reg}).then((foundrec)=>{
                 if(foundrec){
                     const foundrecord = foundrec;
-                    Attendance.find({class:foundrec.class, year:foundrec.year}).then(attnrec=>{
+                    Attendance.find({class:foundrec.class, year:foundrec.year || year:foundrec.year+1}).then(attnrec=>{
                         let sturecarr = [foundrecord.name, foundrecord.class, foundrecord.roll];
                         let janarr = [], febarr = [], mararr = [], aprarr=[], mayarr=[], jularr = [], augarr = [], separr = [], octarr = [], novarr = [], decarr = [];
                         let janattn = [], febattn = [], marattn = [], aprattn=[], mayattn=[], julattn = [], augattn = [], sepattn = [], octattn = [], novattn = [], decattn = [];
